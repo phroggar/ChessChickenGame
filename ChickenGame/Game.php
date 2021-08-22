@@ -48,4 +48,8 @@ class Game {
 	public function isFinished(): bool {
 		return $this->turns >= 15 || $this->fox->getPos() == $this->chicken->getPos();
 	}
+
+	public function start() {
+		print "\n-------- \nWelcome to Fox Chicken Massacre 1.0 \n \n";
+	}
 }

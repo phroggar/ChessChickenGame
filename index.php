@@ -26,7 +26,7 @@ $game = new Game();
 $game->setup();
 
 //Play
-print "\n -------- \n Welcome to Fox Chicken Massacre 1.0 \n \n";
+$game->start();
 do {
 	$game->run();
 } while (!$game->isFinished());
