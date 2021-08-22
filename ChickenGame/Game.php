@@ -46,6 +46,6 @@ class Game {
 	}
 
 	public function isFinished(): bool {
-		return $this->turns >= 15;
+		return $this->turns >= 15 || $this->fox->getPos() == $this->chicken->getPos();
 	}
 }

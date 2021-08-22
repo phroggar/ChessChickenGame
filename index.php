@@ -19,36 +19,14 @@ require __DIR__.'/ChickenGame/Chicken.php';
 
 //error_reporting(-1);
 //ini_set('display_errors', 'on');
-
 use ChickenGame\Game;
 
-//session_start();
-
-$game = null;
-if($_SESSION['chickengame']){
-	//Try "loading" the game
-	$game = unserialize($_SESSION['chickengame']);
-}
-
-if(!($game instanceof Game) || !$game->isSetup()){
-	//Start new chicken game
-	$game = new Game();
-	$game->setup();
-	$_SESSION['chickengame'] = serialize($game);
-}
+//Setup
+$game = new Game();
+$game->setup();
 
 //Play
 print "\n -------- \n Welcome to Fox Chicken Massacre 1.0 \n \n";
-
 do {
 	$game->run();
 } while (!$game->isFinished());
-
-die('fin');
-
-
-if($game->isFinished()){
-	unset($_SESSION['chickengame']);
-}else{
-	$_SESSION['chickengame'] = serialize($game);
-}

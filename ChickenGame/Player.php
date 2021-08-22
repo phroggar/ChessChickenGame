@@ -6,14 +6,21 @@ class Player {
 
 	protected array $pos = [];
 
+	protected array $posX;
+	protected array $posY;
+
+	public function __construct(){
+		$this->posX = \range('A', 'H');
+		$this->posY = \range(1, 8);
+	}
+
 	public function setStartPos(string $letter, int $number){
 		$this->setPos($letter, $number);
 	}
 
 	public function setPos($letter, $number){
-		if($letter > 'H' || $number > 8 || $number < 1 || $letter < 'A'){
-			print_r([$letter,$number]);die('f');
-			//throw new \Exception("Stupid Player ! - You are DEAD");
+		if(!\in_array($letter, $this->posX) || !\in_array($number, $this->posY)){
+			throw new \OutOfRangeException("Stupid Player ! - You are DEAD");
 		}
 		$this->pos = [$letter,$number];
 	}

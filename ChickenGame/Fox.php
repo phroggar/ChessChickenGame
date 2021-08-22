@@ -11,7 +11,7 @@ class Fox extends Player {
 		$myPos = $this->getPos();
 
 		//Fuchs trödelt für 15 Schritte..
-		if($myPos[0] === 'G' && $myPos[1] === '1'){
+		if($myPos[0] === 'G' && $myPos[1] === 1){
 			return $this->setPos('H', 1);
 		}
 
@@ -25,7 +25,11 @@ class Fox extends Player {
 			$this->setPos($myPos[0], $next);
 		}catch (\Exception $e){
 			$cur = \array_search($myPos[0], $letters);
-			$this->setPos($letters[--$cur], $myPos[1]);
+			try {
+				$this->setPos($letters[--$cur], $myPos[1]);
+			} catch (\Exception $e){
+				print "Fox has stepped from the board :(";
+			}
 		}
 	}
 
